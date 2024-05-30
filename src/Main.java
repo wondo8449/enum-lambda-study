@@ -1,10 +1,29 @@
 import sparta.SampleUsers;
 import sparta.User;
+import sparta.enumtype.DiscountEvent;
+import sparta.service.Coupon;
+import sparta.service.Product;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        lambdaTest();
+        enumTest();
+    }
+
+    private static void enumTest() {
+        final Coupon coupon = new Coupon("특가쿠폰", 5000);
+        final Product product = new Product("아이폰135 Super Ultra Pro Max", 20_000_000);
+
+        final int couponPrice = coupon.calcPrice(DiscountEvent.SUMMER);
+        final int productPrice = product.calcPrice(DiscountEvent.WINTER);
+
+        System.out.println("couponPrice = " + couponPrice);
+        System.out.println("productPrice = " + productPrice);
+    }
+
+    private static void lambdaTest() {
         final SampleUsers users = new SampleUsers();
         users.init();
 
