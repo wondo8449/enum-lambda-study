@@ -1,0 +1,62 @@
+import sparta.SampleUsers;
+import sparta.User;
+
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        final SampleUsers users = new SampleUsers();
+        users.init();
+
+        List<User> users1 = users.ageGreaterThan(30);
+        List<User> users2 = users.ageEquals(30);
+        List<User> users3 = users.ageBetween(10, 20);
+        List<User> users4 = users.genderEquals("여성");
+        List<User> users5 = users.burgerEquals("맥도날드");
+
+        List<User> lUser1 = users.getUsersBy((user) -> user.getAge() > 30);
+        List<User> lUser2 = users.getUsersBy((user) -> user.getAge() == 30);
+        List<User> lUser3 = users.getUsersBy((user) -> user.getAge() >= 10 && user.getAge() <= 20);
+        List<User> lUser4 = users.getUsersBy((user) -> "여성".equalsIgnoreCase(user.getGender()));
+        List<User> lUser5 = users.getUsersBy((user) -> "맥도날드".equalsIgnoreCase(user.getBurger()));
+
+        // 30세 초과
+        System.out.println("#####   30세 초과   #####");
+        System.out.println("01: " + users1);
+        System.out.println("L1: " + lUser1);
+        System.out.println();
+
+        // 30세
+        System.out.println("#####   30세   #####");
+        System.out.println("02: " + users2);
+        System.out.println("L2: " + lUser2);
+        System.out.println();
+
+        // 10 ~ 20세 사이
+        System.out.println("#####   10 ~ 20세 사이   #####");
+        System.out.println("03: " + users3);
+        System.out.println("L3: " + lUser3);
+        System.out.println();
+
+        // 여성
+        System.out.println("#####   여성   #####");
+        System.out.println("04: " + users4);
+        System.out.println("L4: " + lUser4);
+        System.out.println();
+
+        // 맥도날드
+        System.out.println("#####   맥도날드   #####");
+        System.out.println("04: " + users5);
+        System.out.println("L4: " + lUser5);
+        System.out.println();
+
+        /*
+        // 국적
+        System.out.println("#####   국적   #####");
+        */
+
+        /*
+        // 반민초(이단)
+        System.out.println("#####   이단   #####");*/
+    }
+}
