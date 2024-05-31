@@ -84,6 +84,27 @@ public class SampleUsers {
         return result;
     }
 
+    public List<User> minchoEquals(String mincho) {
+        List<User> result = new ArrayList<>(20);
+        for (User user : list) {
+            if (user.getMincho().equals(mincho)) {
+                result.add(user);
+            }
+        }
+        return result;
+    }
+
+
+    public List<User> nationEquals(String nation) {
+        List<User> result = new ArrayList<>(20);
+        for (User user : list) {
+            if (user.getNation().equals(nation)) {
+                result.add(user);
+            }
+        }
+        return result;
+    }
+
     public List<User> burgerEquals(String burger) {
         List<User> result = new ArrayList<>(20);
         for (User user : list) {
