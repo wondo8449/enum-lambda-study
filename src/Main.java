@@ -1,15 +1,44 @@
 import sparta.SampleUsers;
 import sparta.User;
 import sparta.enumtype.DiscountEvent;
+import sparta.enumtype.OrderStatus;
 import sparta.service.Coupon;
+import sparta.service.Order;
 import sparta.service.Product;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        lambdaTest();
-        enumTest();
+        orderTest();
+        //lambdaTest();
+        //enumTest();
+    }
+
+    private static void orderTest() {
+        final Order order1 = new Order("아이폰", OrderStatus.PRODUCT_ORDER);
+        final Order order2 = new Order("아이패드", OrderStatus.DELIVERY_COMPLETED);
+        final Order order3 = new Order("맥북", OrderStatus.EXCHANGE);
+
+        final boolean productOrderTest1 = order1.isChangable(OrderStatus.DELIVERY_PRODUCT);
+        final boolean productOrderTest2 = order1.isChangable(OrderStatus.ORDER_ACCEPTED);
+
+        final boolean deliveryCompletedTest1 = order2.isChangable(OrderStatus.PURCHASE_DECISION);
+        final boolean deliveryCompletedTest2 = order2.isChangable(OrderStatus.ORDER_CANCEL);
+        final boolean deliveryCompletedTest3 = order2.isChangable(OrderStatus.EXCHANGE);
+
+        final boolean exchangeTest1 = order3.isChangable(OrderStatus.REDELIVERY);
+        final boolean exchangeTest2 = order3.isChangable(OrderStatus.REFUND);
+
+        System.out.println("상품 주문 -> 상품 발송 : " + productOrderTest1);
+        System.out.println("상품 주문 -> 주문 접수 : " + productOrderTest2);
+
+        System.out.println("배송 완료 -> 구매 결정 : " + deliveryCompletedTest1);
+        System.out.println("배송 완료 -> 주문 취소 : " + deliveryCompletedTest2);
+        System.out.println("배송 완료 -> 교환 : " + deliveryCompletedTest3);
+
+        System.out.println("교환 -> 재배송 : " + exchangeTest1);
+        System.out.println("교환 -> 반품 : " + exchangeTest2);
     }
 
     private static void enumTest() {
